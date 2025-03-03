@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dxrskv8vv/image/upload/v1740935788/20250302_224112_s7j76n.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Background Video -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="https://res.cloudinary.com/dxrskv8vv/video/upload/v1740932386/bg3_lsjwbn.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    <div class="language-switcher">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('bn')">বাংলা</button>
+</div>
+    
+    <div class="password-container">
+        <img style="width:150px;"src="https://res.cloudinary.com/dxrskv8vv/image/upload/v1740935805/logo2_f6fe13.png" alt="No internet">
+        <h1 class="login-title">Login</h1>
+
+        <div class="input-box">
+            <i class='bx bxs-user'></i>
+            <input type="text" id="username" placeholder="Username">
+        </div>
+        <div class="input-box">
+            <i class='bx bxs-lock-alt'></i>
+            <input type="password" id="password" placeholder="Password">
+        </div>
+
+        <div class="remember-forgot-box">
+            <label for="remember">
+                <input type="checkbox" id="remember">
+                <p style="font-size:12px">Remember me</p>
+            </label>
+            <a href="#">Forgot Password?</a>
+        </div>
+
+        <button class="login-btn" onclick="checkCredentials()">Submit</button>
+        <p id="error" style="color: red; display: none;">Wrong username or password, try again!</p>
+
+        <p class="register">
+            Don't have an account?
+            <a href="https://forms.gle/FSjQiNW1ds28W3xv6">Register</a>
+        </p>
+    </div> <!-- Changed from </form> to </div> since no form tag is used -->
+    
+    <script>
+        function checkCredentials() {
+            const correctUsername = "PicHubert6"; // Fixed username
+            const correctPassword = "2e4t6"; // Fixed password
+            const userUsername = document.getElementById("username").value;
+            const userPassword = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error");
+
+            if (userUsername === correctUsername && userPassword === correctPassword) {
+                window.location.href = "dashboard.html"; // Redirect to your main page
+            } else {
+                errorMessage.style.display = "block"; // Show error message
+            }
+        }
+        
+       
+    const translations = {
+        en: {
+            login: "Login",
+            username: "Username",
+            password: "Password",
+            remember: "Remember me",
+            forgot: "Forgot Password?",
+            submit: "Submit",
+            error: "Wrong username or password, try again!",
+            noAccount: "Don't have an account?",
+            register: "Register"
+        },
+        bn: {
+            login: "লগইন",
+            username: "ব্যবহারকারীর নাম",
+            password: "পাসওয়ার্ড",
+            remember: "আমাকে মনে রাখুন",
+            forgot: "পাসওয়ার্ড ভুলে গেছেন?",
+            submit: "জমা দিন",
+            error: "ভুল ব্যবহারকারীর নাম বা পাসওয়ার্ড, আবার চেষ্টা করুন!",
+            noAccount: "একাউন্ট নেই?",
+            register: "নিবন্ধন করুন"
+        }
+    };
+
+    function switchLanguage(lang) {
+        document.querySelector(".login-title").innerText = translations[lang].login;
+        document.getElementById("username").placeholder = translations[lang].username;
+        document.getElementById("password").placeholder = translations[lang].password;
+        document.querySelector(".remember-forgot-box label p").innerText = translations[lang].remember;
+        document.querySelector(".remember-forgot-box a").innerText = translations[lang].forgot;
+        document.querySelector(".login-btn").innerText = translations[lang].submit;
+        document.getElementById("error").innerText = translations[lang].error;
+        document.querySelector(".register").innerHTML = 
+            `${translations[lang].noAccount} <a href="#">${translations[lang].register}</a>`;
+    }
+    </script>
+</body>
+</html>
